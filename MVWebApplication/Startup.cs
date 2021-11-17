@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace WebFundamentals
+namespace MVWebApplication
 {
     public class Startup
     {
@@ -18,13 +18,20 @@ namespace WebFundamentals
             Configuration = configuration;
         }
 
+
+
         public IConfiguration Configuration { get; }
+
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            //Add Middleware for MVC
+            services.AddControllersWithViews();
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,25 +47,24 @@ namespace WebFundamentals
                 app.UseHsts();
             }
 
-            //  app.UseHttpsRedirection();
-
-            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
-            defaultFilesOptions.DefaultFileNames.Clear();
-            defaultFilesOptions.DefaultFileNames.Add("Dashboard.html");
-            defaultFilesOptions.DefaultFileNames.Add("Home.html");
-            
-        
-            app.UseDefaultFiles();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            //app.UseRouting();
+            app.UseRouting();
 
             //app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapRazorPages();
-            //});
+            //Configure MVC Endpoints or MVC Routing
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+
+
         }
     }
 }
+

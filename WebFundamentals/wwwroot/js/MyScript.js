@@ -1,0 +1,5 @@
+﻿function ClikMe()
+{
+
+    alert("Succesfull");
+}
