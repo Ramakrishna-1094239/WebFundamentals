@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@ViewBag.Message</h1>
+<br />
+<p> There are @ViewBag.StudentCount have joined</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>City></th>
+            <th>Gender</th>
+
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach(var item in ViewBag.StudentList)
+        {
+        <tr>
+            <td>@item.StudentID</td>
+            <td>@item.Name</td>
+            <td>@item.City</td>
+            <td>@item.Gender</td>
+        </tr>
+
+        }
+
+
+    </tbody>
+
+</table>
+
+<br />
+
+<a asp-controller="Student" asp-action="Details">Go To Details</a>

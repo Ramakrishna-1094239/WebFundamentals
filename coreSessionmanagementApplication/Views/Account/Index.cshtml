@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+    
+</head>
+
+<body>
+    <h2>Login Page</h2>
+
+    <p>@ViewBag.Error</p>
+
+
+    <form method="post" asp-controller="Account" asp-action="Login">
+        <input type ="text" name="UName" placeholder="Username" />
+        <input type="password" name="password" placeholder="password" />
+        <input type="submit" value="Login"  />
+
+    </form>
+
+</body>
+
+
+</html>
